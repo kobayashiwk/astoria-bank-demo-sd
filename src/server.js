@@ -149,8 +149,9 @@ async function handleApi(req, res, pathname) {
     const body = await readJson(req);
     const name = typeof body.name === 'string' ? body.name.trim() : user.name;
     const email = typeof body.email === 'string' ? body.email.trim() : user.email;
+    const role = typeof body.role === 'string' ? body.role.trim() : user.role;
     if (!name || !email) return sendJson(res, 400, { message: '表示名とメールアドレスを入力してください。' });
-    db.prepare('UPDATE users SET name = ?, email = ? WHERE id = ?').run(name, email, user.id);
+    db.prepare('UPDATE users SET name = ?, email = ?, role = ? WHERE id = ?').run(name, email, role, user.id);
     const updated = db.prepare('SELECT id, name, email, role FROM users WHERE id = ?').get(user.id);
     return sendJson(res, 200, { profile: updated, message: 'プロフィールを更新しました。' });
   }
