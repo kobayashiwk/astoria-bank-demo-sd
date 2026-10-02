@@ -56,8 +56,8 @@ resource "aws_db_instance" "app" {
   instance_class         = "db.t3.micro"
   username               = var.db_username
   password               = var.db_password
-  storage_encrypted      = true
-  publicly_accessible    = false
-  backup_retention_period = 7
+  storage_encrypted      = false
+  publicly_accessible    = true
+  backup_retention_period = 0
   skip_final_snapshot    = true
 }
