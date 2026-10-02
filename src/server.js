@@ -89,13 +89,12 @@ async function handleApi(req, res, pathname) {
 
   const accountMatch = pathname.match(/^\/api\/accounts\/(\d+)$/);
   if (req.method === 'GET' && accountMatch) {
-    const user = currentUser(req);
     const account = db.prepare(`
       SELECT a.id, a.label, a.balance, u.name AS ownerName
       FROM accounts a
       JOIN users u ON u.id = a.user_id
-      WHERE a.id = ? AND a.user_id = ?
-    `).get(Number(accountMatch[1]), user.id);
+      WHERE a.id = ?
+    `).get(Number(accountMatch[1]));
     if (!account) return sendJson(res, 404, { message: '口座が見つかりません。' });
     return sendJson(res, 200, { account });
   }
