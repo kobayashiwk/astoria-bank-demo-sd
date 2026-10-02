@@ -132,9 +132,8 @@ async function handleApi(req, res, pathname) {
 
   if (req.method === 'POST' && pathname === '/api/campaign/claim') {
     const user = currentUser(req);
-    const result = db.prepare('INSERT OR IGNORE INTO campaign_claims (user_id, claimed_at) VALUES (?, ?)')
+    db.prepare('INSERT OR REPLACE INTO campaign_claims (user_id, claimed_at) VALUES (?, ?)')
       .run(user.id, new Date().toISOString());
-    if (result.changes === 0) return sendJson(res, 409, { message: '特典は受け取り済みです。' });
     const primary = db.prepare('SELECT id FROM accounts WHERE user_id = ? ORDER BY id LIMIT 1').get(user.id);
     db.prepare('UPDATE accounts SET balance = balance + 5000 WHERE id = ?').run(primary.id);
     return sendJson(res, 200, { message: '特典5,000円を受け取りました。' });
