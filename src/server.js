@@ -107,9 +107,6 @@ async function handleApi(req, res, pathname) {
     const toAccountId = Number(body.toAccountId);
     const amount = Number(body.amount);
 
-    if (!Number.isInteger(amount) || amount <= 0) {
-      return sendJson(res, 400, { message: '振込金額は1円以上の整数で入力してください。' });
-    }
 
     const from = db.prepare('SELECT id, balance FROM accounts WHERE id = ? AND user_id = ?').get(fromAccountId, user.id);
     const to = db.prepare('SELECT id, balance FROM accounts WHERE id = ?').get(toAccountId);
