@@ -1,0 +1,14 @@
+{
+  "name": "asteria-bank",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Asteria Bank local development application",
+  "scripts": {
+    "reset": "node scripts/reset.js",
+    "start": "node src/server.js",
+    "check": "node --check src/server.js && node --check src/db.js && node --check scripts/reset.js && node --check public/app.js"
+  },
+  "engines": {
+    "node": ">=22.5.0"
+  }
+}

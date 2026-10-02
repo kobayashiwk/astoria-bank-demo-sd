@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Asteria Bank</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <div class="brand">Asteria Bank</div>
+      <div class="tagline">暮らしに寄り添う、シンプルなオンラインバンキング</div>
+    </div>
+    <div class="session-card">
+      <span>ログイン中</span>
+      <strong id="current-user">読み込み中...</strong>
+      <select id="user-select" aria-label="利用者を切り替える"></select>
+    </div>
+  </header>
+
+  <main class="page">
+    <section class="hero">
+      <div>
+        <p class="eyebrow">My Asteria</p>
+        <h1>おかえりなさい、<span id="hero-name">お客様</span></h1>
+        <p>口座の確認や日々のお手続きを、ひとつの画面から。</p>
+      </div>
+      <div class="hero-balance">
+        <span>お預かり残高</span>
+        <strong id="total-balance">-</strong>
+      </div>
+    </section>
+
+    <nav class="tabs">
+      <button class="tab active" data-target="accounts-section">口座</button>
+      <button class="tab" data-target="transfer-section">振込</button>
+      <button class="tab" data-target="campaign-section">キャンペーン</button>
+      <button class="tab" data-target="profile-section">プロフィール</button>
+    </nav>
+
+    <section id="accounts-section" class="panel-section active">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Accounts</p>
+          <h2>口座一覧</h2>
+        </div>
+        <span class="hint">口座カードを選択すると詳細を表示します</span>
+      </div>
+      <div id="accounts" class="account-grid"></div>
+      <article id="account-detail" class="detail-card hidden">
+        <div class="detail-title">
+          <div>
+            <span>口座名義</span>
+            <strong id="detail-owner">-</strong>
+          </div>
+          <span id="detail-label" class="pill">-</span>
+        </div>
+        <div class="detail-grid">
+          <div><span>口座番号</span><strong id="detail-id">-</strong></div>
+          <div><span>残高</span><strong id="detail-balance">-</strong></div>
+        </div>
+        <p id="detail-message" class="message"></p>
+      </article>
+    </section>
+
+    <section id="transfer-section" class="panel-section">
+      <div class="section-heading"><div><p class="eyebrow">Transfer</p><h2>振込</h2></div></div>
+      <form id="transfer-form" class="form-card">
+        <label>振込元<select id="from-account" required></select></label>
+        <label>振込先口座番号<input id="to-account" type="number" value="2001" required></label>
+        <label>金額<input id="amount" type="number" min="1" step="1" value="10000" required></label>
+        <button class="primary" type="submit">振込を実行</button>
+        <p id="transfer-message" class="message"></p>
+      </form>
+    </section>
+
+    <section id="campaign-section" class="panel-section">
+      <div class="section-heading"><div><p class="eyebrow">Campaign</p><h2>キャンペーン</h2></div></div>
+      <div class="campaign-card">
+        <div><span class="campaign-badge">期間限定</span><h3>新生活応援キャンペーン</h3><p>対象のお客様に5,000円をプレゼントします。</p></div>
+        <button id="claim-button" class="primary">特典を受け取る</button>
+      </div>
+      <p id="campaign-message" class="message"></p>
+    </section>
+
+    <section id="profile-section" class="panel-section">
+      <div class="section-heading"><div><p class="eyebrow">Profile</p><h2>プロフィール</h2></div></div>
+      <form id="profile-form" class="form-card">
+        <label>表示名<input id="profile-name" type="text" required></label>
+        <label>メールアドレス<input id="profile-email" type="email" required></label>
+        <button class="primary" type="submit">保存する</button>
+        <p id="profile-message" class="message"></p>
+      </form>
+    </section>
+  </main>
+
+  <footer>Asteria Bank</footer>
+  <script src="/app.js"></script>
+</body>
+</html>

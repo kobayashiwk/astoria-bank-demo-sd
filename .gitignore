@@ -1,0 +1,11 @@
+data/*.db
+data/*.sqlite
+data/*.sqlite3
+node_modules/
+.terraform/
+*.tfstate
+*.tfstate.*
+.terraform.lock.hcl
+.env
+.DS_Store
+Thumbs.db
